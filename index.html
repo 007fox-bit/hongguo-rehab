@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#E63946">
+<title>红果戒毒所 · 娱乐向戒短剧康复中心</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 顶栏 -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand" onclick="App.go('ward')">
+      <span class="brand-mark">🩺</span>
+      <div>
+        <div class="brand-name">红果戒毒所</div>
+        <div class="brand-sub">附属上头医院 · 娱乐向</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="bed-chip" id="bedChip">病历号 --</div>
+      <div class="level-chip" id="levelChip">未体检</div>
+    </div>
+  </div>
+</header>
+
+<!-- 主治医生滚动播报 -->
+<div class="doctor-bar">
+  <span class="doctor-tag">主治医生</span>
+  <span class="doctor-says" id="doctorSays">查房了。今天也有人在偷偷点开红果吗？我不说，我知道。</span>
+</div>
+
+<!-- 主内容区：各视图 -->
+<main id="main" class="main"></main>
+
+<!-- 底部导航 -->
+<nav class="tabbar" id="tabbar">
+  <button class="tab active" data-view="ward"><span class="tab-ico">🏥</span><span>病房</span></button>
+  <button class="tab" data-view="ledger"><span class="tab-ico">📒</span><span>账本</span></button>
+  <button class="tab" data-view="activity"><span class="tab-ico">🎮</span><span>活动室</span></button>
+  <button class="tab" data-view="community"><span class="tab-ico">💬</span><span>病友圈</span></button>
+  <button class="tab" data-view="me"><span class="tab-ico">👤</span><span>我的</span></button>
+</nav>
+
+<!-- 通用弹层 -->
+<div class="modal-mask" id="modalMask" hidden>
+  <div class="modal" id="modal">
+    <div class="modal-title" id="modalTitle">提示</div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-actions" id="modalActions"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
