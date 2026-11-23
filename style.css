@@ -1,0 +1,205 @@
+/* ============================================================
+   红果戒毒所 · 网页版样式
+   医院/戒毒所风：病历卡 + 腕带 + 指示灯 + 趣味动效
+   ============================================================ */
+:root{
+  --brand:#E63946; --brand-d:#C1121F; --brand-l:#FDECEE;
+  --bg:#F4F1E8; --paper:#FFFDF6; --ink:#2B3A35; --ink-sub:#7A8A82;
+  --primary:#1E6F5C; --accent:#E8A33D; --info:#457B9D;
+  --ok:#3FA37A; --warn:#F0C419; --line:#E3DCCB;
+  --shadow:0 8px 28px rgba(43,58,53,.10); --radius:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--bg);color:var(--ink);font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:16px;line-height:1.6}
+body{padding-bottom:78px;max-width:520px;margin:0 auto;min-height:100vh;position:relative;background:var(--bg)}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea{font-family:inherit;font-size:16px}
+
+/* 顶栏 */
+.topbar{background:linear-gradient(135deg,var(--brand),var(--brand-d));color:#fff;position:sticky;top:0;z-index:50;box-shadow:0 4px 16px rgba(230,57,70,.3)}
+.topbar-inner{max-width:520px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;cursor:pointer}
+.brand-mark{font-size:32px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
+.brand-name{font-size:20px;font-weight:900;letter-spacing:1px}
+.brand-sub{font-size:11px;opacity:.85;letter-spacing:.5px}
+.topbar-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.bed-chip,.level-chip{font-size:11px;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:20px;white-space:nowrap}
+.level-chip{background:rgba(255,255,255,.28);font-weight:700}
+
+/* 医生播报 */
+.doctor-bar{max-width:520px;margin:0 auto;padding:8px 18px;display:flex;align-items:center;gap:8px;background:var(--paper);border-bottom:1px solid var(--line);overflow:hidden}
+.doctor-tag{flex:none;background:var(--brand);color:#fff;font-size:11px;padding:2px 8px;border-radius:10px;font-weight:700}
+.doctor-says{font-size:13px;color:var(--ink-sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-style:italic}
+
+/* 主内容 */
+.main{max-width:520px;margin:0 auto;padding:16px 16px 30px}
+.view{animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 通用卡片 */
+.card{background:var(--paper);border-radius:var(--radius);border-left:5px solid var(--brand);box-shadow:var(--shadow);padding:18px;margin:14px 0;position:relative;overflow:hidden}
+.card.green{border-left-color:var(--primary)}
+.card.blue{border-left-color:var(--info)}
+.card.amber{border-left-color:var(--accent)}
+.card-tag{display:inline-block;background:var(--brand);color:#fff;font-size:11px;padding:2px 10px;border-radius:12px;letter-spacing:1px;margin-bottom:8px}
+.card.green .card-tag{background:var(--primary)}
+.card.blue .card-tag{background:var(--info)}
+.card.amber .card-tag{background:var(--accent)}
+.card-title{font-size:17px;font-weight:800;margin-bottom:8px}
+.section-title{font-size:16px;font-weight:800;margin:20px 0 10px;display:flex;align-items:center;gap:8px}
+.section-title::before{content:'';width:5px;height:18px;background:var(--brand);border-radius:3px}
+.muted{color:var(--ink-sub);font-size:13px}
+
+/* 按钮 */
+.btn{display:inline-block;background:linear-gradient(135deg,var(--brand),var(--brand-d));color:#fff;border-radius:30px;padding:11px 24px;font-size:15px;font-weight:700;box-shadow:0 5px 14px rgba(230,57,70,.3);transition:transform .12s,opacity .12s}
+.btn:active{transform:scale(.96);opacity:.9}
+.btn.ghost{background:var(--paper);color:var(--brand);border:2px solid var(--brand);box-shadow:none}
+.btn.green{background:linear-gradient(135deg,var(--primary),#155044);box-shadow:0 5px 14px rgba(30,111,92,.3)}
+.btn.blue{background:linear-gradient(135deg,var(--info),#2d5f7c);box-shadow:0 5px 14px rgba(69,123,157,.3)}
+.btn.sm{padding:7px 16px;font-size:13px}
+.btn.block{display:block;width:100%;text-align:center}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+
+/* 病房：腕带 */
+.wristband{background:linear-gradient(135deg,var(--accent),#d4882a);color:#3a2a10;border-radius:14px;padding:16px 18px;box-shadow:0 8px 20px rgba(232,163,61,.35);position:relative;overflow:hidden;margin:14px 0}
+.wristband::after{content:'••••';position:absolute;right:14px;top:50%;transform:translateY(-50%);color:rgba(58,42,16,.35);letter-spacing:3px;font-size:22px}
+.wb-name{font-size:22px;font-weight:900}
+.wb-meta{font-size:13px;margin-top:4px;opacity:.85}
+.wb-status{display:inline-block;margin-top:8px;background:rgba(58,42,16,.15);padding:3px 12px;border-radius:12px;font-size:12px;font-weight:700}
+
+/* 指标格 */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.stat{background:var(--paper);border-radius:14px;padding:14px 8px;text-align:center;box-shadow:var(--shadow)}
+.stat-num{font-size:26px;font-weight:900;color:var(--brand);line-height:1.2}
+.stat-num.green{color:var(--primary)}
+.stat-label{font-size:12px;color:var(--ink-sub);margin-top:2px}
+
+/* 指示灯 */
+.light{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--ok);margin-right:6px;box-shadow:0 0 0 0 rgba(63,163,122,.6)}
+.light.danger{background:var(--brand);animation:blink 2s infinite}
+.light.info{background:var(--info)}
+@keyframes blink{0%,100%{box-shadow:0 0 0 0 rgba(230,57,70,.6)}50%{box-shadow:0 0 0 10px rgba(230,57,70,0)}}
+
+/* 功能入口九宫格 */
+.entries{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+.entry{background:var(--paper);border-radius:14px;padding:16px 6px;text-align:center;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s}
+.entry:active{transform:scale(.95)}
+.entry-ico{font-size:30px;display:block}
+.entry-name{font-size:13px;font-weight:700;margin-top:6px}
+
+/* 进度条 */
+.prog{height:12px;background:#EFE9DF;border-radius:8px;overflow:hidden;margin:10px 0}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--brand),var(--accent));border-radius:8px;transition:width .6s ease}
+.prog-fill.green{background:linear-gradient(90deg,var(--primary),var(--ok))}
+
+/* 体检 */
+.quiz-opt{display:flex;align-items:center;gap:12px;border:2px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;cursor:pointer;transition:all .15s}
+.quiz-opt.on{border-color:var(--brand);background:var(--brand-l)}
+.quiz-dot{font-size:18px;color:var(--brand)}
+.report{text-align:center;padding:16px 0}
+.report-level{font-size:46px;font-weight:900;margin:8px 0}
+.report-score{font-size:14px;color:var(--ink-sub)}
+.report-stamp{display:inline-block;border:3px solid var(--brand);color:var(--brand);font-weight:900;font-size:18px;padding:4px 14px;border-radius:8px;transform:rotate(-8deg);opacity:.85;margin-bottom:10px}
+
+/* 打卡热力图 */
+.heatmap{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:12px 0}
+.heat{aspect-ratio:1;border-radius:6px;background:#EFE9DF;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ink-sub)}
+.heat.done{background:var(--primary);color:#fff;font-weight:700}
+
+/* 倒计时 */
+.countdown{text-align:center;padding:18px 0}
+.cd-time{font-size:72px;font-weight:900;color:var(--brand);line-height:1.1;font-variant-numeric:tabular-nums}
+.cd-ring{width:180px;height:180px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;background:conic-gradient(var(--brand) var(--deg,0deg),#EFE9DF 0);position:relative;transition:background .5s}
+.cd-ring::before{content:'';position:absolute;inset:12px;background:var(--paper);border-radius:50%}
+.cd-ring>*{position:relative}
+.cd-ring.counting{animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(230,57,70,.3)}50%{box-shadow:0 0 0 16px rgba(230,57,70,0)}}
+
+/* 转盘 */
+.wheel-wrap{text-align:center;margin:12px 0}
+.wheel{width:200px;height:200px;border-radius:50%;margin:0 auto;background:conic-gradient(#E63946,#F4A261,#2A9D8F,#E8A33D,#457B9D,#E63946);border:8px solid #fff;box-shadow:0 8px 24px rgba(43,43,43,.18);transition:transform 2.6s cubic-bezier(.15,.85,.2,1);position:relative;display:flex;align-items:center;justify-content:center}
+.wheel::after{content:'🎯';font-size:44px;background:#fff;width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+.wheel-pointer{color:var(--brand);font-size:22px;margin-bottom:-6px;z-index:2}
+.pick-result{margin-top:14px;background:var(--brand-l);border-radius:12px;padding:12px}
+
+/* 呼吸引导 */
+.breath-stage{text-align:center;padding:18px 0}
+.breath-circle{width:130px;height:130px;border-radius:50%;margin:0 auto;background:radial-gradient(circle,#A8E6CF,#2A9D8F);box-shadow:0 0 0 16px rgba(42,157,143,.15);transition:transform 2s ease-in-out}
+.breath-hint{margin-top:16px;color:var(--primary);font-weight:700}
+
+/* 记忆游戏 */
+.game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0;max-width:300px;margin-left:auto;margin-right:auto}
+.game-cell{aspect-ratio:1;border-radius:12px;background:#EFE9DF;transition:all .2s;display:flex;align-items:center;justify-content:center;font-size:24px}
+.game-cell.lit{background:var(--primary);box-shadow:0 0 16px rgba(30,111,92,.6);transform:scale(1.05)}
+.game-cell.wrong{background:var(--brand)}
+
+/* 帖子/榜单 */
+.post{background:var(--paper);border-radius:12px;padding:12px 14px;margin:10px 0;box-shadow:var(--shadow)}
+.post-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.post-author{font-weight:800;font-size:14px}
+.post-time{font-size:11px;color:var(--ink-sub)}
+.post-content{font-size:14px;white-space:pre-wrap;word-break:break-word}
+.post-actions{margin-top:8px;display:flex;gap:14px}
+.like-btn{font-size:13px;color:var(--ink-sub);cursor:pointer}
+.like-btn.liked{color:var(--brand);font-weight:700}
+.rank-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.rank-row.me{background:var(--brand-l);border-radius:8px;padding:8px 10px}
+.rank-no{font-size:18px;width:28px;text-align:center}
+.rank-name{flex:1;font-size:14px}
+.rank-streak{font-weight:800;color:var(--brand)}
+
+/* 输入框 */
+.field{margin:12px 0}
+.field label{display:block;font-size:13px;font-weight:700;margin-bottom:5px;color:var(--ink)}
+.field input,.field textarea,.field select{width:100%;border:2px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--paper);outline:none;transition:border-color .15s}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--brand)}
+.field textarea{resize:vertical;min-height:70px}
+
+/* 勋章墙 */
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin:12px 0}
+.badge{text-align:center;padding:12px 6px;border-radius:12px;background:#EFE9DF;filter:grayscale(1);opacity:.5;position:relative}
+.badge.unlocked{background:linear-gradient(135deg,#FFF6D8,#FFE9A8);filter:none;opacity:1;box-shadow:0 4px 14px rgba(232,163,61,.3)}
+.badge.unlocked::after{content:'✨';position:absolute;top:2px;right:4px;font-size:12px;animation:shine 2s infinite}
+@keyframes shine{0%,100%{opacity:.4;transform:scale(.8)}50%{opacity:1;transform:scale(1.2)}}
+.badge-ico{font-size:30px}
+.badge-name{font-size:12px;font-weight:800;margin-top:4px}
+.badge-desc{font-size:10px;color:var(--ink-sub)}
+
+/* 柱状图 */
+.chart{display:flex;align-items:flex-end;justify-content:space-around;height:160px;padding:10px 0;margin:12px 0;border-bottom:2px solid var(--line)}
+.chart-col{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;flex:1}
+.chart-bar{width:60%;max-width:28px;background:var(--primary);border-radius:5px 5px 0 0;min-height:3px;transition:height .5s}
+.chart-bar.high{background:var(--brand)}
+.chart-bar.none{background:#E4DED4}
+.chart-label{font-size:10px;color:var(--ink-sub);margin-top:4px}
+
+/* 弹层 */
+.modal-mask{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;display:flex;align-items:center;justify-content:center;padding:24px}
+/* hidden 属性必须能盖过上面的 display:flex，否则弹层初始就遮住整页 */
+.modal-mask[hidden]{display:none!important}
+.modal{background:var(--paper);border-radius:18px;width:100%;max-width:360px;padding:22px;box-shadow:0 20px 50px rgba(0,0,0,.3);animation:pop .2s ease}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-title{font-size:19px;font-weight:900;margin-bottom:10px;color:var(--brand)}
+.modal-body{font-size:14px;color:var(--ink);line-height:1.7}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(20px);background:rgba(43,58,53,.95);color:#fff;padding:10px 20px;border-radius:24px;font-size:14px;z-index:200;opacity:0;pointer-events:none;transition:all .25s;max-width:85%;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* 底部导航 */
+.tabbar{position:fixed;bottom:0;left:0;right:0;background:var(--paper);border-top:1px solid var(--line);display:flex;justify-content:space-around;z-index:40;box-shadow:0 -4px 16px rgba(0,0,0,.05);max-width:520px;margin:0 auto}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 0 10px;font-size:11px;color:var(--ink-sub);gap:2px}
+.tab-ico{font-size:22px;filter:grayscale(1);opacity:.6}
+.tab.active{color:var(--brand);font-weight:800}
+.tab.active .tab-ico{filter:none;opacity:1;transform:scale(1.1)}
+
+/* 减少动画 */
+.reduce-motion *{animation:none!important;transition:none!important}
+
+/* 空状态 */
+.empty{text-align:center;padding:40px 20px;color:var(--ink-sub)}
+.empty-ico{font-size:50px;display:block;margin-bottom:10px}
+
+@media(max-width:380px){.stat-num{font-size:22px}.cd-time{font-size:60px}.entry-ico{font-size:26px}}
